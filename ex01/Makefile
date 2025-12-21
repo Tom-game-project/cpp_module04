@@ -1,4 +1,4 @@
-# ex00
+# ex01
 CXX=c++
 CXX_FLAG= -Wall -Wextra -Werror -std=c++98 -pedantic-errors -g
 
