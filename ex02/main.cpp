@@ -6,6 +6,7 @@
 
 int main()
 {
+    // const Animal* animal = new Animal(); 
     const Animal* dog = new Dog();
     const Animal* cat = new Cat();
     delete dog;//should not create a leak
