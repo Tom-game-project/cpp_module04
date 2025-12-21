@@ -1,5 +1,6 @@
 #include "Character.hpp"
 #include "ICharacter.hpp"
+#include <cstddef>
 #include <string>
 
 Character::Character(std::string const &name): _name(name) {
@@ -23,21 +24,30 @@ Character::Character(Character const & other): _name(other._name) {
     }
 }
 
-// 代入演算子
-Character & Character::operator=(Character const & other) {
-    if (this!= &other) {
-        this->_name = other._name;
-        // 1. 既存のマテリアを削除（メモリリーク防止）
-        for (int i = 0; i < INVENTORY_LENGTH; i++) {
-            if (this->_inventory[i])
+void Character::assign(Character & other) {
+    for (int i = 0; i < INVENTORY_LENGTH; i++) {
+        if (this->_inventory[i] && other._inventory[i]) {
+            if (this->_inventory[i]->getType() == other._inventory[i]->getType()) {
+                *this->_inventory[i] = *other._inventory[i];
+            } else {
                 delete this->_inventory[i];
-            this->_inventory[i] = NULL;
-        }
-        // 2. 新しいマテリアを複製して代入
-        for (int i = 0; i < INVENTORY_LENGTH; i++) {
-            if (other._inventory[i])
                 this->_inventory[i] = other._inventory[i]->clone();
+            }
+        } else {
+            if (this->_inventory[i] != NULL) {
+                delete this->_inventory[i];
+            }
+            this->_inventory[i] = (other._inventory[i] ?
+                    other._inventory[i]->clone():
+                    NULL);
         }
+    }
+}
+
+// 代入演算子
+Character & Character::operator=(Character & other) {
+    if (this!= &other) {
+        this->assign(other);
     }
     return *this;
 }

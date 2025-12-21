@@ -9,11 +9,12 @@
 class MateriaSource: public IMateriaSource {
     private:
         AMateria* _materias[MATERIAS_LENGTH]; // 学習したマテリアのテンプレートを格納
+        void assign(MateriaSource &other);
 
     public:
         MateriaSource();
         MateriaSource(const MateriaSource& other);
-        MateriaSource& operator=(const MateriaSource& other);
+        MateriaSource& operator=(MateriaSource& other);
         virtual ~MateriaSource();
 
         virtual void learnMateria(AMateria* m);

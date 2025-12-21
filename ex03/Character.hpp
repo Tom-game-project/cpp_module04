@@ -10,10 +10,11 @@ class Character: public ICharacter{
     private:
         std::string _name;
         AMateria*   _inventory[INVENTORY_LENGTH]; // マテリアを格納する固定長配列
+        void assign(Character &other);
     public:
         Character();
         Character(const Character &other);
-        Character&operator=(const Character &other);
+        Character&operator=(Character &other);
 
         Character(std::string const & name);
 

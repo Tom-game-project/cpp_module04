@@ -16,6 +16,10 @@ int main()
     j->makeSound();
     meta->makeSound();
 
+    delete i;
+    delete j;
+    delete meta;
+
     // wrong animal case
     const WrongAnimal* wrong_meta = new WrongAnimal();
     const WrongAnimal* wrong_cat = new WrongCat();
@@ -25,6 +29,9 @@ int main()
 
     wrong_cat->makeSound();  // wanimal wanimal
     wrong_meta->makeSound(); 
+
+    delete wrong_cat;
+    delete wrong_meta;
 
     return 0;
 }
