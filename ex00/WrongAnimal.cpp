@@ -3,7 +3,7 @@
 #include <string>
 
 WrongAnimal::WrongAnimal(): type("WrongAnimal") {
-    
+    std::cout << "WrongAnimal constructor called" << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal &other) {
@@ -19,7 +19,7 @@ WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other) {
 }
 
 WrongAnimal::~WrongAnimal() {
-
+    std::cout << "WrongAnimal destructor called" << std::endl;
 }
 
 
